@@ -1,4 +1,4 @@
-"use strict";var r=process.argv,t=r[r.length-1],S={
+"use strict";var R=process.argv,T=R[R.length-1],S={
     1:{
         a:function(d){var f=0;d.split("").forEach(e=>f+={"(":1,")":-1}[e]);return f;},
         b:function(d){for(var i=0,f=0;i<d.length;i++){f+={"(":1,")":-1}[d[i]];if(f<0)return i+1}}
@@ -79,7 +79,7 @@
         }
     },
     8:{
-        a:function(d){var x=0;d.split("\n").forEach(e=>{x+=e.length-e.replace(/\\\\|\\"|\\x../g,"X").replace(/"/g,"").length;});return x;},
+        a:function(d){var x=0;d.split("\n").forEach(e=>{x+=e.length-e.replace(/\\\\|\\"|\\x../g,"X").length+(e?2:0);});return x;},
         b:function(d){}
     },
     9:{
@@ -151,4 +151,4 @@
         b:function(d){}
     }
 };
-console.log(S[t.substr(0,t.length-1)][t.substr(-1)](require('fs').readFileSync("input/"+t[0]+".txt","UTF-8")));
+console.log(S[T.substr(0,T.length-1)][T.substr(-1)](require('fs').readFileSync("input/"+T[0]+".txt","UTF-8")));
