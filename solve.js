@@ -79,8 +79,8 @@
         }
     },
     8:{
-        a:function(d){var x=0;d.split("\n").forEach(e=>{x+=e.length-e.replace(/\\\\|\\"|\\x../g,"X").length+(e?2:0);});return x;},
-        b:function(d){}
+        a:function(d){var x=0;d.split("\n").forEach(e=>{x+=e&&e.length-e.replace(/\\\\|\\"|\\x../g,"X").length+2;});return x;},
+        b:function(d){var x=0;d.split("\n").forEach(e=>{x+=e&&e.replace(/\\|"/g,"XX").length+2-e.length;});return x;}
     },
     9:{
         a:function(d){},
