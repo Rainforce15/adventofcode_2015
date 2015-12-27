@@ -151,4 +151,4 @@
         b:function(d){}
     }
 };
-console.log(S[T.substr(0,T.length-1)][T.substr(-1)](require('fs').readFileSync("input/"+T[0]+".txt","UTF-8")));
+console.log(S[T.substr(0,T.length-1)][T.substr(-1)](require('fs').readFileSync("input/"+T.substr(0,T.length-1)+".txt","UTF-8")));
