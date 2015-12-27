@@ -1,5 +1,4 @@
-"use strict";var r=process.argv,t=r[r.length-1];
-var so={
+"use strict";var r=process.argv,t=r[r.length-1],S={
     1:{
         a:function(d){var f=0;d.split("").forEach(e=>f+={"(":1,")":-1}[e]);return f;},
         b:function(d){for(var i=0,f=0;i<d.length;i++){f+={"(":1,")":-1}[d[i]];if(f<0)return i+1}}
@@ -75,15 +74,12 @@ var so={
                             if(!u(s[a].v))s[c].v=s[a].v<<b&m;}.bind(null,f[0],f[2],e[1]));break;
                         case"RSHIFT":s[f[0]].o.push(function(a,b,c){
                                 if(!u(s[a].v))s[c].v=s[a].v>>b;}.bind(null,f[0],f[2],e[1]));
-                    }}}});s.b.v=so[7].a(d);
+                    }}}});s.b.v=S[7].a(d);
             while(c>0){c=0;for(e in s){if(u(s[e].v))c++;s[e].o.forEach(f=>f());}}return s.a.v;
         }
     },
     8:{
-        a:function(d){
-            var x=0,y=0;
-
-        },
+        a:function(d){var x=0;d.split("\n").forEach(e=>{x+=e.length-e.replace(/\\\\|\\"|\\x../g,"X").replace(/"/g,"").length;});return x;},
         b:function(d){}
     },
     9:{
@@ -155,5 +151,4 @@ var so={
         b:function(d){}
     }
 };
-
-console.log(so[t[0]][t[1]](require('fs').readFileSync("input/"+t[0]+".txt","UTF-8")));
+console.log(S[t.substr(0,t.length-1)][t.substr(-1)](require('fs').readFileSync("input/"+t[0]+".txt","UTF-8")));
