@@ -74,16 +74,16 @@
         a:d=>{
             var n={},p,l,z=0,i,k,c,
             Y=(a,b)=>{if(!n[l[a]])n[l[a]]={};n[l[a]][l[b]]=l[2]|0;},
-            X=b=>{if(p.length<k.length){var o=Object.keys(n[b]);for(var j=0;j<o.length;j++){if(p.indexOf(o[j])<0){p.push(o[j]);X(o[j]);p.pop();}}}else{c=0;for(var m=0;m<p.length-1;m++){c+=n[p[m]][p[m+1]];}if(c<z||z==0)z=c;}};
-            d.split("\n").forEach(e=>{if(e){l=e.split(/ to | = /g);Y(0,1);Y(1,0);}});
-            k=Object.keys(n);for(i=0;i<k.length;i++){p=[k[i]];X(p[0]);}return z;
+            X=b=>{if(p.length<k.length){var o=Object.keys(n[b]);for(var j=0;j<o.length;j++){
+                if(p.indexOf(o[j])<0){p.push(o[j]);X(o[j]);p.pop();}}}else{c=0;for(var m=0;m<p.length-1;m++){c+=n[p[m]][p[m+1]];}if(c<z||z==0)z=c;}};
+            d.split("\n").forEach(e=>{if(e){l=e.split(/ to | = /g);Y(0,1);Y(1,0);}});k=Object.keys(n);for(i=0;i<k.length;i++){p=[k[i]];X(p[0]);}return z;
         },
         b:d=>{
             var n={},p,l,z=0,i,k,c,
             Y=(a,b)=>{if(!n[l[a]])n[l[a]]={};n[l[a]][l[b]]=l[2]|0;},
-            X=b=>{if(p.length<k.length){var o=Object.keys(n[b]);for(var j=0;j<o.length;j++){if(p.indexOf(o[j])<0){p.push(o[j]);X(o[j]);p.pop();}}}else{c=0;for(var m=0;m<p.length-1;m++){c+=n[p[m]][p[m+1]];}if(c>z)z=c;}};
-            d.split("\n").forEach(e=>{if(e){l=e.split(/ to | = /g);Y(0,1);Y(1,0);}});
-            k=Object.keys(n);for(i=0;i<k.length;i++){p=[k[i]];X(p[0]);}return z;
+            X=b=>{if(p.length<k.length){var o=Object.keys(n[b]);for(var j=0;j<o.length;j++){
+                if(p.indexOf(o[j])<0){p.push(o[j]);X(o[j]);p.pop();}}}else{c=0;for(var m=0;m<p.length-1;m++){c+=n[p[m]][p[m+1]];}if(c>z)z=c;}};
+            d.split("\n").forEach(e=>{if(e){l=e.split(/ to | = /g);Y(0,1);Y(1,0);}});k=Object.keys(n);for(i=0;i<k.length;i++){p=[k[i]];X(p[0]);}return z;
         }
     },
     10:{
@@ -97,8 +97,12 @@
         }
     },
     11:{
-        a:d=>{},
-        b:d=>{}
+        a:d=>{
+            var h=i=>d.charCodeAt(i),i,u=i=>{if(i>=0){var c=d[i].charCodeAt(0);d[i]=String.fromCharCode(c<122?c+1:(u(i-1)||97));}},p=e=>{d=d.split("");u(7);d=d.join("");},
+                a=e=>{for(i=0;i<d.length-2;i++)if(h(i+1)-1==h(i)&&h(i+2)-2==h(i))return true;},b=e=>(d.match(/i|l|o/g)||"").length,
+                c=e=>(d.match(/(.)\1(?!.*\1\1).*(.)\2/g)||"").length;p();while(!a()||b()||!c())p();return d;
+        },
+        b:d=>S[11].a(S[11].a(d))
     },
     12:{
         a:d=>{},
