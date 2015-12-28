@@ -87,8 +87,14 @@
         }
     },
     10:{
-        a:d=>{},
-        b:d=>{}
+        a:d=>{
+            var c,n,r,x=(s,j)=>{n=1;r="";c=s[0];for(var i=0;i<s.length;i++){if(!c||i==s.length-1||c!=s[i+1]){r+=c?n+""+c:"";c=s[i+1];n=1;}else n++;}return j>1?x(r,j-1):r;};
+            return x(d,40).length;
+        },
+        b:d=>{
+            var c,n,r,x=(s,j)=>{n=1;r="";c=s[0];for(var i=0;i<s.length;i++){if(!c||i==s.length-1||c!=s[i+1]){r+=c?n+""+c:"";c=s[i+1];n=1;}else n++;}return j>1?x(r,j-1):r;};
+            return x(d,50).length;
+        }
     },
     11:{
         a:d=>{},
