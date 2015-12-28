@@ -105,8 +105,14 @@
         b:d=>S[11].a(S[11].a(d))
     },
     12:{
-        a:d=>{},
-        b:d=>{}
+        a:d=>{
+            d=JSON.parse(d);var c=0,f=e=>{if(typeof e=="object"){if(e.constructor==Array){e.forEach(e=>f(e));}
+            else{for(var k in e)f(e[k]);}}else if(typeof e=="number"){c+=e;}};f(d);return c
+        },
+        b:d=>{
+            d=JSON.parse(d);var c=0,f=e=>{if(typeof e=="object"){if(e.constructor==Array){e.forEach(e=>f(e));}
+            else{var v=1;for(var k in e)if(e[k]=="red")v=0;if(v)for(var k in e)f(e[k]);}}else if(typeof e=="number"){c+=e;}};f(d);return c
+        }
     },
     13:{
         a:d=>{},
