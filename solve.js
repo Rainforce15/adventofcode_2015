@@ -89,7 +89,12 @@
             function X(b){if(p.length<k.length){var o=Object.keys(n[b]);for(var j=0;j<o.length;j++){if(p.indexOf(o[j])<0){p.push(o[j]);X(o[j]);p.pop();}}
             }else{c=0;for(var m=0;m<p.length-1;m++){c+=n[p[m]][p[m+1]];}if(c<z||z==0)z=c;}}k=Object.keys(n);for(i=0;i<k.length;i++){p=[k[i]];X(p[0]);}return z;
         },
-        b:function(d){}
+        b:function(d){
+            var n={},p,l,z=0,i,k,c;
+            function Y(a,b){if(!n[l[a]])n[l[a]]={};n[l[a]][l[b]]=l[2]|0;}d.split("\n").forEach(e=>{if(e){l=e.split(/ to | = /g);Y(0,1);Y(1,0);}});
+            function X(b){if(p.length<k.length){var o=Object.keys(n[b]);for(var j=0;j<o.length;j++){if(p.indexOf(o[j])<0){p.push(o[j]);X(o[j]);p.pop();}}
+            }else{c=0;for(var m=0;m<p.length-1;m++){c+=n[p[m]][p[m+1]];}if(c>z)z=c;}}k=Object.keys(n);for(i=0;i<k.length;i++){p=[k[i]];X(p[0]);}return z;
+        }
     },
     10:{
         a:function(d){},
