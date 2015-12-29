@@ -1,4 +1,4 @@
-"use strict";var R=process.argv,L=e=>e.length,T=R[L(R)-1],U=undefined,E="",B=isNaN,N="\n",I=T.substr(0,L(T)-1),S={
+"use strict";var R=process.argv,L=e=>e.length,T=R[L(R)-1],U=undefined,E="",B=isNaN,N="\n",K=Object.keys,Q=require,I=T.substr(0,L(T)-1),S={
     1:{
         a:d=>{var f=0;d.split(E).forEach(e=>f+={"(":1,")":-1}[e]);return f;},
         b:d=>{for(var i=0,f=0;i<L(d);i++){f+={"(":1,")":-1}[d[i]];if(f<0)return i+1}}
@@ -8,12 +8,12 @@
         b:d=>{var r=0;d.split(N).map(e=>e.split("x")).forEach(e=>{var l=e[0]|0,w=e[1]|0,h=e[2]|0;r+=2*(l>w?l>h?w+h:w+l:w>h?l+h:w+l)+l*w*h||0;});return r;}
     },
     3:{
-        a:d=>{var m={"0,0":1},x=0,y=0;d.split(E).forEach(e=>{y+={"^":1,"v":-1}[e]||0;x+={">":1,"<":-1}[e]||0;m[x+","+y]=m[x+","+y]+1||1;});return L(Object.keys(m));},
-        b:d=>{var m={"0,0":2},s=[0,0,0,0],q;d.split(E).forEach((e,i)=>{q=(s[i%2?0:2]+={">":1,"<":-1}[e]||0)+","+(s[i%2?1:3]+={"^":1,"v":-1}[e]||0);m[q]=m[q]+1||1;});return L(Object.keys(m));}
+        a:d=>{var m={"0,0":1},x=0,y=0;d.split(E).forEach(e=>{y+={"^":1,"v":-1}[e]||0;x+={">":1,"<":-1}[e]||0;m[x+","+y]=m[x+","+y]+1||1;});return L(K(m));},
+        b:d=>{var m={"0,0":2},s=[0,0,0,0],q;d.split(E).forEach((e,i)=>{q=(s[i%2?0:2]+={">":1,"<":-1}[e]||0)+","+(s[i%2?1:3]+={"^":1,"v":-1}[e]||0);m[q]=m[q]+1||1;});return L(K(m));}
     },
     4:{
         a:d=>S[4].c(d),b:d=>S[4].c(d,1),
-        c:(d,t)=>{var i=1;while(require('crypto').createHash('md5').update(d+i).digest("hex").indexOf("00000"+(t?"0":""))!=0){i++}return i;}
+        c:(d,t)=>{var i=1;while(Q('crypto').createHash('md5').update(d+i).digest("hex").indexOf("00000"+(t?"0":E))!=0){i++}return i;}
     },
     5:{
         a:d=>{var c=0;d.split(N).forEach(e=>c+=e.match(/[aeiou].*[aeiou].*[aeiou]/g)&&e.match(/(.)\1/g)&&!e.match(/ab|cd|pq|xy/g)?1:0);return c;},
@@ -58,9 +58,9 @@
         c:(d,t)=>{
             var n={},p,l,z=0,i,k,c,
             Y=(a,b)=>{if(!n[l[a]])n[l[a]]={};n[l[a]][l[b]]=l[2]|0;},
-            X=b=>{if(L(p)<L(k)){var o=Object.keys(n[b]);for(var j=0;j<L(o);j++){
-                if(p.indexOf(o[j])<0){p.push(o[j]);X(o[j]);p.pop();}}}else{c=0;for(var m=0;m<L(p)-1;m++){c+=n[p[m]][p[m+1]];}if(t?c>z:c<z||z==0)z=c;}};
-            d.split(N).forEach(e=>{if(e){l=e.split(/ to | = /g);Y(0,1);Y(1,0);}});k=Object.keys(n);for(i=0;i<L(k);i++){p=[k[i]];X(p[0]);}return z;
+            X=b=>{if(L(p)<L(k)){var o=K(n[b]);for(var j=0;j<L(o);j++)
+                if(p.indexOf(o[j])<0){p.push(o[j]);X(o[j]);p.pop();}}else{c=0;for(var m=0;m<L(p)-1;m++)c+=n[p[m]][p[m+1]];if(t?c>z:c<z||z==0)z=c;}};
+            d.split(N).forEach(e=>{if(e){l=e.split(/ to | = /g);Y(0,1);Y(1,0);}});k=K(n);for(i=0;i<L(k);i++){p=[k[i]];X(p[0]);}return z;
         }
     },
     10:{
@@ -83,11 +83,11 @@
         }
     },
     13:{
-        a:d=>{
-
-        },
-        b:d=>{
-
+        a:d=>S[13].c(d),b:d=>S[13].c(d,1),
+        c:(d,t)=>{var n={},p,l,z=0,i,k,c,o={}, Y=(a,b)=>c+=n[a][b]+n[b][a], X=b=>{if(L(p)<L(k)){var o=K(n[b]);
+                for(var j=0;j<L(o);j++)if(p.indexOf(o[j])<0){p.push(o[j]);X(o[j]);p.pop();}}else{c=0;for(var m=0;m<L(p)-1;m++)Y(p[m],p[m+1]);Y(p[L(p)-1],p[0]);if(c>z)z=c;}};
+            d.split(N).forEach(e=>{if(e){l=e.split(/ would | happiness units by sitting next to |\./g);l[1]=l[1].split(" ");if(!n[l[0]])n[l[0]]={};n[l[0]][l[2]]=(l[1][1]|0)*(l[1][0]=="gain"?1:-1);}});
+            if(t){k=K(n);for(i=0;i<L(k);i++){o[k[i]]=0;n[k[i]].X=0;}n.X=o;}k=K(n);for(i=0;i<L(k);i++){p=[k[i]];X(p[0]);}return z;
         }
     },
     14:{
@@ -139,4 +139,4 @@
         b:d=>{}
     }
 };
-console.log(S[I][T.substr(-1)](require('fs').readFileSync("input/"+I+".txt","UTF-8")));
+console.log(S[I][T.substr(-1)](Q('fs').readFileSync("input/"+I+".txt","UTF-8")));
