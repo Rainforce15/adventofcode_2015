@@ -91,8 +91,14 @@
         }
     },
     14:{
-        a:d=>{},
-        b:d=>{}
+        a:d=>S[14].c(d),
+        b:d=>S[14].c(d,1),
+        c:(d,t)=>{
+            var c,g,h,i,n={},p={};for(i=0;i<2503;i++) {d.split(N).forEach(e=>{
+                if(e){e=e.split(/ can fly | km\/s for | seconds, but then must rest for | seconds./g);if(i%((e[2]|0)+(e[3]|0))<(e[2]|0))n[e[0]]=n[e[0]]?(n[e[0]]+(e[1]|0)):(e[1]|0);}});
+                c=0;h=0;K(n).forEach(e=>{g=0;K(n).forEach(f=>{if(n[f]>n[e])g++;});if(!g)p[e]=p[e]?p[e]+1:1;if(n[e]>c)c=n[e];if(p[e]>h)h=p[e];});
+            }return t?h:c;
+        }
     },
     15:{
         a:d=>{},
