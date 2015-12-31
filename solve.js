@@ -86,7 +86,7 @@
         a:d=>S[13].c(d),b:d=>S[13].c(d,1),
         c:(d,t)=>{var n={},p,l,z=0,i,k,c,o={}, Y=(a,b)=>c+=n[a][b]+n[b][a], X=b=>{if(L(p)<L(k)){var o=K(n[b]);
                 for(var j=0;j<L(o);j++)if(p.indexOf(o[j])<0){p.push(o[j]);X(o[j]);p.pop();}}else{c=0;for(var m=0;m<L(p)-1;m++)Y(p[m],p[m+1]);Y(p[L(p)-1],p[0]);if(c>z)z=c;}};
-            d.split(N).forEach(e=>{if(e){l=e.split(/ would | happiness units by sitting next to |\./g);l[1]=l[1].split(" ");if(!n[l[0]])n[l[0]]={};n[l[0]][l[2]]=+l[1][1]*(l[1][0]=="gain"?1:-1);}});
+            d.split(N).forEach(e=>{if(e){l=e.split(/ .*?d | h.*?o |\./g);l[1]=l[1].split(" ");if(!n[l[0]])n[l[0]]={};n[l[0]][l[2]]=+l[1][1]*(l[1][0]=="gain"?1:-1);}});
             if(t){k=K(n);for(i=0;i<L(k);i++){o[k[i]]=0;n[k[i]].X=0;}n.X=o;}k=K(n);for(i=0;i<L(k);i++){p=[k[i]];X(p[0]);}return z;
         }
     },
@@ -95,7 +95,7 @@
         b:d=>S[14].c(d,1),
         c:(d,t)=>{
             var c,g,h,i,n={},p={};for(i=0;i<2503;i++) {d.split(N).forEach(e=>{
-                if(e){e=e.split(/ can fly | km\/s for | seconds, but then must rest for | seconds./g);if(i%(+e[2]+(+e[3]))<+e[2])n[e[0]]=n[e[0]]?(n[e[0]]+(+e[1])):(+e[1]);}});
+                if(e){e=e.split(/ .*?y | .*?r | /g);if(i%(+e[2]+(+e[3]))<+e[2])n[e[0]]=n[e[0]]?(n[e[0]]+(+e[1])):(+e[1]);}});
                 c=0;h=0;K(n).forEach(e=>{g=0;K(n).forEach(f=>{if(n[f]>n[e])g++;});if(!g)p[e]=p[e]?p[e]+1:1;if(n[e]>c)c=n[e];if(p[e]>h)h=p[e];});
             }return t?h:c;
         }
