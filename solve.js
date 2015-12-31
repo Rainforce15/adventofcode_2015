@@ -91,8 +91,7 @@
         }
     },
     14:{
-        a:d=>S[14].c(d),
-        b:d=>S[14].c(d,1),
+        a:d=>S[14].c(d),b:d=>S[14].c(d,1),
         c:(d,t)=>{
             var c,g,h,i,n={},p={};for(i=0;i<2503;i++) {d.split(N).forEach(e=>{
                 if(e){e=e.split(/ .*?y | .*?r | /g);if(i%(+e[2]+(+e[3]))<+e[2])n[e[0]]=n[e[0]]?(n[e[0]]+(+e[1])):(+e[1]);}});
@@ -101,8 +100,7 @@
         }
     },
     15:{
-        a:d=>S[15].c(d,1),
-        b:d=>S[15].c(d),
+        a:d=>S[15].c(d,1),b:d=>S[15].c(d),
         c:(d,t)=>{
             var f={},g,s=0,i,b=1,c,n,h,k,v,w,x,y,z,l=100;d.split("\n").forEach(e=>{if(e){g=e.split(/: |, | /g);f[g[0]]=[+g[2],+g[4],+g[6],+g[8],+g[10],0];}});k=K(f);
             c=e=>{w=x=y=z=0;k.forEach(e=>{w+=f[e][0]*f[e][5];x+=f[e][1]*f[e][5];y+=f[e][2]*f[e][5];z+=f[e][3]*f[e][5];});return (w>=0?w:0)*(x>=0?x:0)*(y>=0?y:0)*(z>=0?z:0);};
@@ -113,8 +111,12 @@
         }
     },
     16:{
-        a:d=>{},
-        b:d=>{}
+        a:d=>S[16].c(d),b:d=>S[16].c(d,1),
+        c:(d,t)=>{
+            var f,s={children:3,cats:7,samoyeds:2,pomeranians:3,akitas:0,vizslas:0,goldfish:5,trees:3,cars:2,perfumes:1};
+            d.split(/\n/g).forEach(e=>{if(e&&!f){e=e.split(/Sue |: |, /g);f=e[1];for (var i=2;i<e.length;i+=2) {if(t){if((e[i]=="cats"||e[i]=="trees")){if(s[e[i]]>=e[i+1])f=0;}
+            else if((e[i]=="pomeranians"||e[i]=="goldfish")){if(s[e[i]]<=e[i+1])f=0;}else if(s[e[i]]!=e[i+1])f=0;} else if(s[e[i]]!=e[i+1])f=0;}}});return f;
+        }
     },
     17:{
         a:d=>{},
