@@ -5,7 +5,7 @@
     },
     2:{
         a:d=>{var r=0;d.split(N).map(e=>e.split("x")).forEach(e=>{var x=e[0]*e[1],y=e[1]*e[2],z=e[2]*e[0];r+=2*(x+y+z)+(x<y?x<z?x:z:y<z?y:z)||0;});return r;},
-        b:d=>{var r=0;d.split(N).map(e=>e.split("x")).forEach(e=>{var l=e[0]|0,w=e[1]|0,h=e[2]|0;r+=2*(l>w?l>h?w+h:w+l:w>h?l+h:w+l)+l*w*h||0;});return r;}
+        b:d=>{var r=0;d.split(N).map(e=>e.split("x")).forEach(e=>{var l=+e[0],w=+e[1],h=+e[2];r+=2*(l>w?l>h?w+h:w+l:w>h?l+h:w+l)+l*w*h||0;});return r;}
     },
     3:{
         a:d=>{var m={"0,0":1},x=0,y=0;d.split(E).forEach(e=>{y+={"^":1,"v":-1}[e]||0;x+={">":1,"<":-1}[e]||0;m[x+","+y]=m[x+","+y]+1||1;});return L(K(m));},
@@ -22,7 +22,7 @@
     6:{
         a:d=>S[6].c(d),b:d=>S[6].c(d,1),
         c:(d,t)=>{
-            var m=[],c=0,o=",",i,j,a,v;d.split(N).map(e=>e.split(/ (?!o)/g).map(e=>e.indexOf(o)>-1?e.split(o):e)).forEach(e=>{if(e[0]){for(i=e[1][1]|0;i<(e[3][1]|0)+1;i++){for(j=e[1][0]|0;j<(e[3][0]|0)+1;j++){
+            var m=[],c=0,o=",",i,j,a,v;d.split(N).map(e=>e.split(/ (?!o)/g).map(e=>e.indexOf(o)>-1?e.split(o):e)).forEach(e=>{if(e[0]){for(i=+e[1][1];i<+e[3][1]+1;i++){for(j=+e[1][0];j<+e[3][0]+1;j++){
                 v=m[i+o+j];m[i+o+j]=e[0]=="toggle"?t?(v|0)+2:!m[i+o+j]:t?e[0]=="turn on"?(v|0)+1:v>0?(v|0)-1:0:e[0]=="turn on";}}}});for(a in m){c+=t?m[a]:m[a]?1:0;}return c;}
     },
     7:{
@@ -57,7 +57,7 @@
         a:d=>S[9].c(d),b:d=>S[9].c(d,1),
         c:(d,t)=>{
             var n={},p,l,z=0,i,k,c,
-            Y=(a,b)=>{if(!n[l[a]])n[l[a]]={};n[l[a]][l[b]]=l[2]|0;},
+            Y=(a,b)=>{if(!n[l[a]])n[l[a]]={};n[l[a]][l[b]]=+l[2];},
             X=b=>{if(L(p)<L(k)){var o=K(n[b]);for(var j=0;j<L(o);j++)
                 if(p.indexOf(o[j])<0){p.push(o[j]);X(o[j]);p.pop();}}else{c=0;for(var m=0;m<L(p)-1;m++)c+=n[p[m]][p[m+1]];if(t?c>z:c<z||z==0)z=c;}};
             d.split(N).forEach(e=>{if(e){l=e.split(/ to | = /g);Y(0,1);Y(1,0);}});k=K(n);for(i=0;i<L(k);i++){p=[k[i]];X(p[0]);}return z;
@@ -86,7 +86,7 @@
         a:d=>S[13].c(d),b:d=>S[13].c(d,1),
         c:(d,t)=>{var n={},p,l,z=0,i,k,c,o={}, Y=(a,b)=>c+=n[a][b]+n[b][a], X=b=>{if(L(p)<L(k)){var o=K(n[b]);
                 for(var j=0;j<L(o);j++)if(p.indexOf(o[j])<0){p.push(o[j]);X(o[j]);p.pop();}}else{c=0;for(var m=0;m<L(p)-1;m++)Y(p[m],p[m+1]);Y(p[L(p)-1],p[0]);if(c>z)z=c;}};
-            d.split(N).forEach(e=>{if(e){l=e.split(/ would | happiness units by sitting next to |\./g);l[1]=l[1].split(" ");if(!n[l[0]])n[l[0]]={};n[l[0]][l[2]]=(l[1][1]|0)*(l[1][0]=="gain"?1:-1);}});
+            d.split(N).forEach(e=>{if(e){l=e.split(/ would | happiness units by sitting next to |\./g);l[1]=l[1].split(" ");if(!n[l[0]])n[l[0]]={};n[l[0]][l[2]]=+l[1][1]*(l[1][0]=="gain"?1:-1);}});
             if(t){k=K(n);for(i=0;i<L(k);i++){o[k[i]]=0;n[k[i]].X=0;}n.X=o;}k=K(n);for(i=0;i<L(k);i++){p=[k[i]];X(p[0]);}return z;
         }
     },
@@ -95,14 +95,22 @@
         b:d=>S[14].c(d,1),
         c:(d,t)=>{
             var c,g,h,i,n={},p={};for(i=0;i<2503;i++) {d.split(N).forEach(e=>{
-                if(e){e=e.split(/ can fly | km\/s for | seconds, but then must rest for | seconds./g);if(i%((e[2]|0)+(e[3]|0))<(e[2]|0))n[e[0]]=n[e[0]]?(n[e[0]]+(e[1]|0)):(e[1]|0);}});
+                if(e){e=e.split(/ can fly | km\/s for | seconds, but then must rest for | seconds./g);if(i%(+e[2]+(+e[3]))<+e[2])n[e[0]]=n[e[0]]?(n[e[0]]+(+e[1])):(+e[1]);}});
                 c=0;h=0;K(n).forEach(e=>{g=0;K(n).forEach(f=>{if(n[f]>n[e])g++;});if(!g)p[e]=p[e]?p[e]+1:1;if(n[e]>c)c=n[e];if(p[e]>h)h=p[e];});
             }return t?h:c;
         }
     },
     15:{
-        a:d=>{},
-        b:d=>{}
+        a:d=>S[15].c(d,1),
+        b:d=>S[15].c(d),
+        c:(d,t)=>{
+            var f={},g,s=0,i,b=1,c,n,h,k,v,w,x,y,z,l=100;d.split("\n").forEach(e=>{if(e){g=e.split(/: |, | /g);f[g[0]]=[+g[2],+g[4],+g[6],+g[8],+g[10],0];}});k=K(f);
+            c=e=>{w=x=y=z=0;k.forEach(e=>{w+=f[e][0]*f[e][5];x+=f[e][1]*f[e][5];y+=f[e][2]*f[e][5];z+=f[e][3]*f[e][5];});return (w>=0?w:0)*(x>=0?x:0)*(y>=0?y:0)*(z>=0?z:0);};
+            h=e=>{i=0;k.forEach(g=>{i+=f[g][4]*f[g][5];});return i==500;};
+            n=i=>{f[k[i]][5]++;if(f[k[i]][5]>l){f[k[i]][5]=0;if(f[k[L(k)-1]][5]==l)b=0; else n(i+1);}};
+            v=e=>{i=0;k.forEach(g=>{i+=f[g][5];});return i==l;};
+            while(b){if(v()&&(t||h())&&c()>s){s=c();}n(0);}return s;
+        }
     },
     16:{
         a:d=>{},
