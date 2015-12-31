@@ -35,26 +35,26 @@ var solutions = {
     "14b": 1102,
     "15a": 222870,
     "15b": 117936,
-    "16a": "undefined",
-    "16b": "undefined",
-    "17a": "undefined",
-    "17b": "undefined",
-    "18a": "undefined",
-    "18b": "undefined",
-    "19a": "undefined",
-    "19b": "undefined",
-    "20a": "undefined",
-    "20b": "undefined",
-    "21a": "undefined",
-    "21b": "undefined",
-    "22a": "undefined",
-    "22b": "undefined",
-    "23a": "undefined",
-    "23b": "undefined",
-    "24a": "undefined",
-    "24b": "undefined",
-    "25a": "undefined",
-    "25b": "undefined"
+    "16a": undefined,
+    "16b": undefined,
+    "17a": undefined,
+    "17b": undefined,
+    "18a": undefined,
+    "18b": undefined,
+    "19a": undefined,
+    "19b": undefined,
+    "20a": undefined,
+    "20b": undefined,
+    "21a": undefined,
+    "21b": undefined,
+    "22a": undefined,
+    "22b": undefined,
+    "23a": undefined,
+    "23b": undefined,
+    "24a": undefined,
+    "24b": undefined,
+    "25a": undefined,
+    "25b": undefined
 };
 
 console.log("testing...");
@@ -63,19 +63,17 @@ var keys = Object.keys(solutions);
 
 var write=m=>process.stdout.write(m);
 
+for(var j=3;j>0;j--){ //print out names vertically - none of them is len > 3
+    keys.forEach(e=>{
+        write(e[e.length-j]?e[e.length-j]:" ");
+    });
+    write("\n");
+}
+
 var check=i=>{
     exec("node solve.js "+keys[i], function(error, stdout, stderr) {
         write((stdout==solutions[keys[i]]+"\n"?"\x1b[32m":"\x1b[31m")+"█\x1b[0m"); // write █ in either green(32) or red(31)
         if(i<keys.length-1)check(i+1);
-        else {
-            write("\n");
-            for(var j=0;j<3;j++){ //print out names vertically - none of them is len > 3
-                keys.forEach(e=>{
-                    write(e[j]?e[j]:" ");
-                });
-                write("\n");
-            }
-        }
     });
 };
 
