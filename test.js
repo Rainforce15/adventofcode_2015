@@ -37,8 +37,8 @@ var solutions = {
     "15b": 117936,
     "16a": 373,
     "16b": 260,
-    "17a": undefined,
-    "17b": undefined,
+    "17a": 1304,
+    "17b": 18,
     "18a": undefined,
     "18b": undefined,
     "19a": undefined,
@@ -60,6 +60,7 @@ var solutions = {
 console.log("testing...");
 
 var keys = Object.keys(solutions);
+//var keys = ["17a","17b"];
 
 var write=m=>process.stdout.write(m);
 
