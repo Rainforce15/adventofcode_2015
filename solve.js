@@ -126,8 +126,18 @@
         }
     },
     18:{
-        a:d=>{},
-        b:d=>{}
+        a:d=>S[18].c(d),
+        b:d=>S[18].c(d,1),
+        c:(d,t)=>{
+            var l=[],n,z=[-1,0,1],c=0,r=(x,y,a)=>t&&(y==0||y==L(l)-1)&&(x==0||x==L(a)-1),u,s=c=>{
+                u=[];l.forEach((a,y)=>{u.push([]);a.forEach((e,x)=>{
+                    n=0;z.forEach(v=>{z.forEach(w=>{n+=(v||w)&&x+v>-1&&y+w>-1&&x+v<L(a)&&y+w<L(l)&&l[y+w][x+v]=="#"?1:0;})});
+                    u[L(u)-1].push([".","#"][+(r(x,y,a)||(l[y][x]=="#"&&n>1&&n<4)||(l[y][x]=="."&&n==3))]);
+                });});
+                l=u;if(c>1)s(c-1);
+            };d.split(N).forEach(e=>e&&l.push(e.split(E)));l.forEach((a,y)=>{a.forEach((e,x)=>{if(r(x,y,a))l[y][x]="#";});});
+            s(100);l.forEach(e=>e.forEach(e=>{c+=+(e=="#");}));return c;
+        }
     },
     19:{
         a:d=>{},

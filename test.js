@@ -39,8 +39,8 @@ var solutions = {
     "16b": 260,
     "17a": 1304,
     "17b": 18,
-    "18a": undefined,
-    "18b": undefined,
+    "18a": 814,
+    "18b": 924,
     "19a": undefined,
     "19b": undefined,
     "20a": undefined,
@@ -59,21 +59,29 @@ var solutions = {
 
 console.log("testing...");
 
+//test everything or just pick the ones you like
 var keys = Object.keys(solutions);
-//var keys = ["17a","17b"];
+//var keys = ["18a","18b"];
 
+
+//small shortcut so we don't need to type process.stdout. every time
 var write=m=>process.stdout.write(m);
 
-for(var j=3;j>0;j--){ //print out names vertically - none of them is len > 3
+// this creates the weird table column labels for the days based on the keys - it prints the j-th character of each key,
+// counted from the end, while filling up shorter strings with spaces (so "3a" would be printed as " ", "3", "a" per line)
+for(var j=3;j>0;j--){
     keys.forEach(e=>{
         write(e[e.length-j]?e[e.length-j]:" ");
     });
     write("\n");
 }
 
+//check loop
 var check=i=>{
-    exec("node solve.js "+keys[i], function(error, stdout, stderr) {
-        write((stdout==solutions[keys[i]]+"\n"?"\x1b[32m":"\x1b[31m")+"█\x1b[0m"); // write █ in either green(32) or red(31)
+    exec("node solve.js "+keys[i], function(error, stdout, stderr) { //call solver for given key
+        // write █ in either green(32) or red(31) based on if stdout output is the same as solution
+        write((stdout==solutions[keys[i]]+"\n"?"\x1b[32m":"\x1b[31m")+"█\x1b[0m");
+        // repeat with the next key if our iterator i isn't done with the array yet
         if(i<keys.length-1)check(i+1);
     });
 };
