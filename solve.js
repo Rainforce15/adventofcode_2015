@@ -146,8 +146,8 @@
         }
     },
     20:{
-        a:d=>{},
-        b:d=>{}
+        a:d=>S[20].c(d),b:d=>S[20].c(d,1),
+        c:(d,t)=>{var i=0,r=0,j,x;while(r*(t?11:10)<d){i++;r=i+1;x=Math.sqrt(i);if(i%x==0)r+=x;for(j=2;j<(t?51:x);j++){if(i%j==0){r+=j+i/j;}}}return i;}
     },
     21:{
         a:d=>{},
