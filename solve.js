@@ -140,8 +140,12 @@
         }
     },
     19:{
-        a:d=>{},
-        b:d=>{}
+        a:d=>S[19].c(d), b:d=>S[19].c(d,1),
+        c:(d,t)=>{
+            var a=d.split("\n\n"),b=a[1].match(/[A-Z][a-z]*/g),f={};if(t){f=-1;b.forEach(e=>{f+={Rn:1,Y:-1,Ar:-1}[e]||1;});return f;}
+            b.forEach((c,i)=>{a[0].split("\n").map(e=>e.split(" => ")).forEach(h=>{if(c==h[0])f[b.slice(0,i).concat(h[1],b.slice(i+1)).join("")]=1;});});
+            return L(K(f));
+        }
     },
     20:{
         a:d=>{},
