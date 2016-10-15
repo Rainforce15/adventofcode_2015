@@ -113,7 +113,7 @@
         a:d=>S[16].c(d),b:d=>S[16].c(d,1),
         c:(d,t)=>{
             var f,s={children:3,cats:7,samoyeds:2,pomeranians:3,akitas:0,vizslas:0,goldfish:5,trees:3,cars:2,perfumes:1};
-            F(N(d),e=>{if(e&&!f){e=P(e,/Sue |: |, /g);f=e[1];for (var i=2;i<e.length;i+=2) {if(t){if((e[i]=="cats"||e[i]=="trees")){if(s[e[i]]>=e[i+1])f=0;}
+            F(N(d),e=>{if(e&&!f){e=P(e,/Sue |: |, /g);f=e[1];for (var i=2;i<L(e);i+=2) {if(t){if((e[i]=="cats"||e[i]=="trees")){if(s[e[i]]>=e[i+1])f=0;}
             else if((e[i]=="pomeranians"||e[i]=="goldfish")){if(s[e[i]]<=e[i+1])f=0;}else if(s[e[i]]!=e[i+1])f=0;} else if(s[e[i]]!=e[i+1])f=0;}}});return f;
         }
     },
@@ -121,7 +121,7 @@
         a:d=>S[17].c(d),b:d=>S[17].c(d,1),
         c:(d,t)=>{
             d=N(d);var m=[],c=0,s,b=1,i,j,k,n=i=>{if(!~m.indexOf(0))b=0;else{m[i]++;if(m[i]>1){m[i]=0;n(i+1);}}};F(d,e=>{if(e)m.push(0);});
-            while(b){s=0;F(m,(e,i)=>{s+=e*+d[i]});if(s==150){k=m.filter(e=>e).length;if(k==i)j++;if(!i||k<i){i=k;j=1;}c++;}n(0);}return t?j:c;
+            while(b){s=0;F(m,(e,i)=>{s+=e*+d[i]});if(s==150){k=L(m.filter(e=>e));if(k==i)j++;if(!i||k<i){i=k;j=1;}c++;}n(0);}return t?j:c;
         }
     },
     18:{
@@ -154,25 +154,38 @@
         c:(d,t)=>{
             d=d.match(/([0-9]+)/g);var h,g=+d[1],f=+d[2],i,j,q,k=t?0:10000,z=[0,0,0],r=[z,[25,1,0],[50,2,0],[100,3,0],[20,0,1],[40,0,2],[80,0,3]],
                 s=[[[8,4,0],[10,5,0],[25,6,0],[40,7,0],[74,8,0]],[z,[13,0,1],[31,0,2],[53,0,3],[75,0,4],[102,0,5]],r,r],e=[0,0,0,0],a,b=(n,c)=>s[n][e[n]][c];
-            while(e[0]<s[0].length){h=[100,+d[0]];for(i=1;h[0]>0&&h[1]>0;i++){if(i%2)a=b(0,1)+b(2,1)+b(3,1)-f;else a=g-b(1,2)-b(2,2)-b(3,2);h[i%2]-=a>1?a:1;}
-                q=b(0,0)+b(1,0)+b(2,0)+b(3,0);if((q<k^t)&&h[t]>0)k=q;e[3]++;for(j=3;j>0;j--){if(e[2]==e[3])e[3]++;if(e[j]==s[j].length){e[j]=0;e[j-1]++;}}}
+            while(e[0]<L(s[0])){h=[100,+d[0]];for(i=1;h[0]>0&&h[1]>0;i++){if(i%2)a=b(0,1)+b(2,1)+b(3,1)-f;else a=g-b(1,2)-b(2,2)-b(3,2);h[i%2]-=a>1?a:1;}
+                q=b(0,0)+b(1,0)+b(2,0)+b(3,0);if((q<k^t)&&h[t]>0)k=q;e[3]++;for(j=3;j>0;j--){if(e[2]==e[3])e[3]++;if(e[j]==L(s[j])){e[j]=0;e[j-1]++;}}}
             return k;
         }
     },
     22:{
-        a:d=>S[22].c(d,0), b:d=>S[22].c(d,1),
+        a:d=>S[22].c(d,0),b:d=>S[22].c(d,1),
         c:(d,t)=>{
             d=d.match(/([0-9]+)/g);var h=[+d[0],0],g=+d[1],s=[[53,4,0],[73,2,2],[113,6],[173,6],[229,5]],c=[0],e,m,z,f,i,u;
-            while(h[0]>0||h[1]<1){z=0;h=[+d[0],50];m=500;e=[0,0,0];for(i=0;i<c.length*2&&h[0]>0&&h[1]>0&&m>0;i++) {
+            while(h[0]>0||h[1]<1){z=0;h=[+d[0],50];m=500;e=[0,0,0];for(i=0;i<L(c)*2&&h[0]>0&&h[1]>0&&m>0;i++) {
                     h[1]-=t*(i+1)%2;if(e[0]>0)u=7; else u=0;if(e[1]>0)h[0]=h[0]-3;if(e[2]>0)m+=101;e.forEach((v,i)=>e[i]=v>0?v-1:0);if(h[0]>0&&h[1]>0){if(i%2)h[1]-=g-u;
                     else{f=c[Math.floor(i/2)];m-=s[f][0];z+=s[f][0];if(f>1){if(e[f-2]>0)h[1]=0;e[f-2]=s[f][1];}else{h[0]-=s[f][1];h[1]+=s[f][2];if(h[1]>50)h[1]=50;}}}}
-                if(c.length>1)do c[0]++;while(c[0]>1&&(c[0]==c[1]||c.length>2&&c[0]==c[2]));else c[0]++;
-                for(i=0;i<c.length;i++)if(c[i]>=s.length){c[i]=0;if(i<c.length-1)do c[i+1]++;while(c[i+1]>1&&c[i+1]==c[i+2]||i<c.length-2&&c[i+1]==c[i+3]);else c.push(0);}}return z;
+                if(L(c)>1)do c[0]++;while(c[0]>1&&(c[0]==c[1]||L(c)>2&&c[0]==c[2]));else c[0]++;
+                for(i=0;i<L(c);i++)if(c[i]>=L(s)){c[i]=0;if(i<L(c)-1)do c[i+1]++;while(c[i+1]>1&&c[i+1]==c[i+2]||i<L(c)-2&&c[i+1]==c[i+3]);else c.push(0);}}return z;
         }
     },
     23:{
-        a:d=>{},
-        b:d=>{}
+        a:d=>S[23].c(d,0),b:d=>S[23].c(d,1),
+        c:(d,t)=>{
+            d=N(d).map(e=>e.split(/,? /g));d.pop();var a={a:t,b:0},x,y,z,q,i=0;
+            while(i>=0&&i<L(d)){
+                [x,y,z]=d[i];q={
+                    hlf:e=>a[y]=a[y]/2|0,
+                    tpl:e=>a[y]*=3,
+                    inc:e=>a[y]++,
+                    jmp:e=>i+=y-1,
+                    jie:e=>i+=a[y]%2?0:z-1,
+                    jio:e=>i+=a[y]==1?z-1:0
+                }[x]();i++;
+            }
+            return a.b;
+        }
     },
     24:{
         a:d=>{},
