@@ -79,7 +79,7 @@
         a:d=>S[12].c(d,1),b:d=>S[12].c(d),
         c:(d,t)=>{
             d=JSON.parse(d);var c=0,f=e=>{if(typeof e=="object"){if(e.constructor==Array)F(e,e=>f(e));
-            else{var v=1;for(var k in e)if(e[k]=="red")v=0;if(v||t)for(var l in e)f(e[l]);}}else if(typeof e=="number"){c+=e;}};f(d);return c;
+            else{var v=1;for(var k in e)if(e[k]=="red")v=0;if(v||t)for(var l in e)f(e[l]);}}else if(typeof e=="number")c+=e;};f(d);return c;
         }
     },
     13:{
@@ -106,7 +106,7 @@
             c=e=>{w=x=y=z=0;F(k,e=>{w+=f[e][0]*f[e][5];x+=f[e][1]*f[e][5];y+=f[e][2]*f[e][5];z+=f[e][3]*f[e][5];});return (w>=0?w:0)*(x>=0?x:0)*(y>=0?y:0)*(z>=0?z:0);};
             h=e=>{i=0;F(k,g=>{i+=f[g][4]*f[g][5];});return i==500;};
             n=i=>{f[k[i]][5]++;if(f[k[i]][5]>l){f[k[i]][5]=0;if(f[k[L(k)-1]][5]==l)b=0;else n(i+1);}};
-            v=e=>{i=0;F(k,g=>{i+=f[g][5];});return i==l;};while(b){if(v()&&(t||h())&&c()>s){s=c();}n(0);}return s;
+            v=e=>{i=0;F(k,g=>{i+=f[g][5];});return i==l;};while(b){if(v()&&(t||h())&&c()>s)s=c();n(0);}return s;
         }
     },
     16:{
@@ -150,8 +150,14 @@
         c:(d,t)=>{var i=0,r=0,j,x;while(r*(t?11:10)<d){i++;r=i+1;x=Math.sqrt(i);if(i%x==0)r+=x;for(j=2;j<(t?51:x);j++){if(i%j==0){r+=j+i/j;}}}return i;}
     },
     21:{
-        a:d=>{},
-        b:d=>{}
+        a:d=>S[21].c(d,0), b:d=>S[21].c(d,1),
+        c:(d,t)=>{
+            var m=d.match(/([0-9]+)/g),h,g=+m[1],f=+m[2],i,j,q,k=t?0:10000,z=[0,0,0],r=[z,[25,1,0],[50,2,0],[100,3,0],[20,0,1],[40,0,2],[80,0,3]],
+                s=[[[8,4,0],[10,5,0],[25,6,0],[40,7,0],[74,8,0]],[z,[13,0,1],[31,0,2],[53,0,3],[75,0,4],[102,0,5]],r,r],e=[0,0,0,0],a,b=(n,c)=>s[n][e[n]][c];
+            while(e[0]<s[0].length){h=[100,+m[0]];for(i=1;h[0]>0&&h[1]>0;i++){if(i%2)a=b(0,1)+b(2,1)+b(3,1)-f;else a=g-b(1,2)-b(2,2)-b(3,2);h[i%2]-=a>1?a:1;}
+                q=b(0,0)+b(1,0)+b(2,0)+b(3,0);if((q<k^t)&&h[t]>0)k=q;e[3]++;for(j=3;j>0;j--){if(e[2]==e[3])e[3]++;if(e[j]==s[j].length){e[j]=0;e[j-1]++;}}}
+            return k;
+        }
     },
     22:{
         a:d=>{},
