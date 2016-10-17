@@ -51,8 +51,8 @@ var solutions = {
     "22b": 1937,
     "23a": 184,
     "23b": 231,
-    "24a": undefined,
-    "24b": undefined,
+    "24a": 11846773891,
+    "24b": 80393059,
     "25a": undefined,
     "25b": undefined
 };
