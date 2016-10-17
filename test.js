@@ -53,8 +53,7 @@ var solutions = {
     "23b": 231,
     "24a": 11846773891,
     "24b": 80393059,
-    "25a": undefined,
-    "25b": undefined
+    "25a": 9132360
 };
 
 console.log("testing...");

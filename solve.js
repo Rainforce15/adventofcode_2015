@@ -200,8 +200,10 @@
         }
     },
     25:{
-        a:d=>{},
-        b:d=>{}
+        a:d=>{
+            d=d.match(/([0-9]+)/g);var x=a=>{var r=0;for(;a>0;a--){r+=a;}return r;},y=(a,b)=>x(a+b-1)-b+1,
+            z=a=>{var r=20151125;for(;a>1;a--){r=(r*252533)%33554393}return r;};return(z(y(+d[1],+d[0])));
+        }
     }
 };
 console.log(S[I][T.substr(-1)](Q('fs').readFileSync("input/"+I+".txt","UTF-8")));
